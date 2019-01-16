@@ -28,20 +28,41 @@ namespace LiveCoding.UI
             //    .FirstOrDefault();
 
             // 10 Zufallszahlen generieren
-            Random rand = new Random();
-            var result = Enumerable.Range(1, 10).Select(x => rand.Next());
+            //Random rand = new Random();
+            //var result = Enumerable.Range(1, 10).Select(x => rand.Next());
+
+            // Pupils filtern und gruppieren
+            Pupil[] pupils =
+            {
+                new Pupil {Firstname = "Martin", Plz = 4663},
+                new Pupil {Firstname = "Gerald", Plz = 4060},
+                new Pupil {Firstname = "Josef", Plz = 4060}
+            };
+
+            var result = pupils
+                .GroupBy(p => p.Plz)
+                .Select(group => new
+                {
+                    Plz = group.Key,
+                    Count = group.Count(),
+                    FirstPupil = group.OrderBy(ge=>ge.Firstname).First().Firstname
+                })
+                .OrderBy(s => s.Plz);
+
 
             PrintResult("Ergebnis", result);
             Console.WriteLine("-------------");
-
-            result = result.Take(3);
-
-            PrintResult("Ergebnis", result);
 
             //PrintResult("Ergebnis", result);
             Console.WriteLine(result);
 
             Console.WriteLine("Bitte eine beliebige Taste zum Beenden drücken.");
+        }
+
+        class Pupil
+        {
+            public string Firstname { get; set; }
+            public int Plz { get; set; }
         }
 
         private static void PrintResult<T>(string caption, IEnumerable<T> enumeration)
