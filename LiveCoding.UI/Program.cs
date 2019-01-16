@@ -12,9 +12,23 @@ namespace LiveCoding.UI
 
             // Eindeutige Großbuchstaben zählen
             //var result = text.Distinct().Count(c => char.IsUpper(c));
-            
+
+            // Sortierung (Groß-/Kleinschreibung egal)
+            //var result = text.OrderBy(x => char.ToUpper(x));
+
+            // Position des ersten Leerzeichens ermitteln
+            var result = text
+                .Select((c, idx) => new
+                    {
+                        ch = c,
+                        index = idx
+                    })
+                .Where(helper => helper.ch == ' ')
+                .Select(helper => helper.index)
+                .FirstOrDefault();
+
             //PrintResult("Ergebnis", result);
-            //Console.WriteLine(result);
+            Console.WriteLine(result);
 
             Console.WriteLine("Bitte eine beliebige Taste zum Beenden drücken.");
         }
