@@ -8,8 +8,13 @@ namespace LiveCoding.UI
     {
         private static void Main(string[] args)
         {
-            var result = Enumerable.Empty<string>();
-            PrintResult("Ergebnis", result);
+            string text = "HTL Leonding";
+
+            // Eindeutige Großbuchstaben zählen
+            //var result = text.Distinct().Count(c => char.IsUpper(c));
+            
+            //PrintResult("Ergebnis", result);
+            //Console.WriteLine(result);
 
             Console.WriteLine("Bitte eine beliebige Taste zum Beenden drücken.");
         }
