@@ -17,15 +17,26 @@ namespace LiveCoding.UI
             //var result = text.OrderBy(x => char.ToUpper(x));
 
             // Position des ersten Leerzeichens ermitteln
-            var result = text
-                .Select((c, idx) => new
-                    {
-                        ch = c,
-                        index = idx
-                    })
-                .Where(helper => helper.ch == ' ')
-                .Select(helper => helper.index)
-                .FirstOrDefault();
+            //var result = text
+            //    .Select((c, idx) => new
+            //    {
+            //        Ch = c,
+            //        Index = idx + 1
+            //    })
+            //    .Where(helper => helper.Ch == ' ')
+            //    .Select(helper => helper.Index)
+            //    .FirstOrDefault();
+
+            // 10 Zufallszahlen generieren
+            Random rand = new Random();
+            var result = Enumerable.Range(1, 10).Select(x => rand.Next());
+
+            PrintResult("Ergebnis", result);
+            Console.WriteLine("-------------");
+
+            result = result.Take(3);
+
+            PrintResult("Ergebnis", result);
 
             //PrintResult("Ergebnis", result);
             Console.WriteLine(result);
